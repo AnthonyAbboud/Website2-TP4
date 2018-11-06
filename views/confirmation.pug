@@ -1,0 +1,19 @@
+extends layout
+
+block scripts
+    script(type='text/javascript', src='./assets/scripts/orders.service.js')
+    script(type='text/javascript', src='./assets/scripts/confirmation.controller.js')
+
+block content
+    head
+        title OnlineShop - Confirmation
+    main
+        article
+        h1
+          | Votre commande est confirmée 
+          span#name
+          | !
+          p
+          | Votre numéro de confirmation est le 
+          strong#confirmation-number
+          | .
