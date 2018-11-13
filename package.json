@@ -8,13 +8,15 @@
     "e2e": "nightwatch --config ./tests/nightwatch.json"
   },
   "dependencies": {
+    "asyncawait": "^1.0.7",
     "body-parser": "~1.17.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.3",
-    "express": "~4.15.2",
+    "express": "^4.16.4",
     "express-session": "^1.15.5",
     "mongoose": "^4.11.8",
     "morgan": "~1.8.1",
+    "node-fetch": "^2.3.0",
     "path": "^0.12.7",
     "pug": "~2.0.0-beta11",
     "serve-favicon": "~2.4.2",
