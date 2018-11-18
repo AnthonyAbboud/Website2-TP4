@@ -1,56 +1,15 @@
 const router = require("./index");
-const Products = require("../lib/products");
 
-router.get("/api/products", (req, res) => {
-  Products.getProducts(req.query).then((productsList) => {
-  	res.json(productsList);
-  }).catch((e)=>{
-  	res.status(400);
-  	res.send(e);
-  });
-});
+const getProducts = require("../lib/Products/getProducts");
+const getProduct = require("../lib/Products/getProduct");
+const addProduct = require("../lib/Products/addProduct");
+const deleteProduct = require("../lib/Products/deleteProduct");
+const deleteProducts = require("../lib/Products/deleteProducts");
 
-router.get("/api/products/:id", (req, res) => {
-  let productID = req.params.id;
-  Products.getProduct(productID).then((product) => {
-  	res.json(product);
-  }).catch((e)=>{
-  	res.status(404);
-  	res.send(e);
-  });
-});
-
-router.post("/api/products", (req, res) => {
-  Products.createProduct(req.body).then((response) => {
-    res.status(201);
-    res.send();
-  }).catch((e)=>{
-  	res.status(400);
-  	res.send(e);
-  });
-});
-
-router.delete("/api/products/:id", (req, res) => {
-  let productID = req.params.id;
-  Products.deleteProduct(productID).then((response) => {
-    if(response.deletedCount == 1){
-      res.status(204);
-    }
-    else{
-      res.status(404);
-    }
-    res.send();
-  }).catch((e)=>{
-    res.status(404);
-    res.send(e);
-  });
-});
-
-router.delete("/api/products", (req, res) => {
-  Products.clearProducts().then((response) => {
-    res.status(204);
-    res.send();
-  });
-});
+router.get("/api/products", getProducts);
+router.get("/api/products/:id", getProduct);
+router.post("/api/products", addProduct);
+router.delete("/api/products/:id", deleteProduct);
+router.delete("/api/products", deleteProducts);
 
 module.exports = router;

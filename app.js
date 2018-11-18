@@ -41,7 +41,7 @@ app.use("/", index);
 app.use("/index.html", index);
 app.use("/products.html", products);
 app.use("/shopping-cart.html", shoppingCart);
-app.use("/orders.html", shoppingCart);
+app.use("/orders.html", orders);
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {

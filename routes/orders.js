@@ -1,6 +1,6 @@
 const router = require("./index");
-const Orders = require("../lib/orders");
 
+/*
 router.get("/api/orders", (req, res) => {
   Orders.getOrders().then((ordersList) => {
   	res.json(ordersList);
@@ -16,5 +16,5 @@ router.get("/api/orders/:id", (req, res) => {
     res.send(e);
   });
 });
-
+*/
 module.exports = router;
