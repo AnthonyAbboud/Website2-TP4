@@ -1,30 +1,35 @@
 extends layout
 
-block scripts
-    script(type='text/javascript', src='./assets/scripts/products.controller.js')
-
 block content
-    head
-        title OnlineShop - Produits
-    main
-      section.sidebar(aria-label='Filtres')
-        section
-          h2 Catégories
-          #product-categories.btn-group.vertical
-            button(data-category='cameras') Appareils photo
-            button(data-category='consoles') Consoles
-            button(data-category='screens') Écrans
-            button(data-category='computers') Ordinateurs
-            button(data-category='all') Tous les produits
-        section
-          h2 Classement
-          #product-criteria.btn-group.vertical
-            button(data-criteria='price-asc') Prix (bas-haut)
-            button(data-criteria='price-dsc') Prix (haut-bas)
-            button(data-criteria='alpha-asc') Nom (A-Z)
-            button(data-criteria='alpha-dsc') Nom (Z-A)
-      article
-        span#products-count.right-header 13 produits
-        h1 Produits
-        #products-list.products
-          .loading
+  main
+  section.sidebar(aria-label='Filtres')
+    section
+      h2 Catégories
+      #product-categories.btn-group.vertical
+        button(data-category='cameras') Appareils photo
+        button(data-category='consoles') Consoles
+        button(data-category='screens') Écrans
+        button(data-category='computers') Ordinateurs
+        button(data-category='all') Tous les produits
+    section
+      h2 Classement
+      #product-criteria.btn-group.vertical
+        button(data-criteria='price-asc') Prix (bas-haut)
+        button(data-criteria='price-dsc') Prix (haut-bas)
+        button(data-criteria='alpha-asc') Nom (A-Z)
+        button(data-criteria='alpha-dsc') Nom (Z-A)
+  article
+    span#products-count.right-header #{products.length} produits
+    h1 Produits
+    #products-list.products
+      each product in products
+        .product
+          a(href='./produits.html/' + product.id, title="En savoir plus...")
+            h2=product.name
+            img(alt=product.name src="./assets/img/" + product.image)
+            p.price <small>Prix</small> #{product.price.toString().replace('.', ',')}&thinsp;$
+      else
+        .loading
+
+block scripts
+  script(type='text/javascript', src='./assets/scripts/products.controller.js')

@@ -8,8 +8,8 @@ const deleteProducts = require("../lib/Products/deleteProducts");
 
 router.get("/api/products", getProducts);
 router.get("/api/products/:id", getProduct);
-router.post("/api/products", addProduct);
+router.post("/api/products/", addProduct);
 router.delete("/api/products/:id", deleteProduct);
-router.delete("/api/products", deleteProducts);
+router.delete("/api/products/", deleteProducts);
 
 module.exports = router;

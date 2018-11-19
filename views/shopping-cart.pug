@@ -1,30 +1,43 @@
-extends layout
-
-block scripts
-    script(type='text/javascript', src='./assets/scripts/products.service.js')
-
-block content
-    head
-        title OnlineShop - Panier
-    main
-      article
-        h1 Panier
-        #shopping-cart-container
-          table.table.shopping-cart-table
-            thead
-              tr
-                th
-                th Produit
-                th Prix unitaire
-                th Quantité
-                th Prix
-            tbody
-          p.shopping-cart-total
-            | Total: 
-            strong#total-amount
-          a.btn.pull-right(href='./order.html')
-            | Commander 
-            i.fa.fa-angle-double-right
-          button#remove-all-items-button.btn
-            i.fa.fa-trash-o
-            |   Vider le panier
+main
+  article
+    h1 Panier
+    if cart.count > 0
+      #shopping-cart-container
+        table.table.shopping-cart-table
+          thead
+            tr
+              th
+              th Produit
+              th Prix unitaire
+              th Quantité
+              th Prix
+          tbody
+            each item in cart.items
+              tr(data-product-id=item.productId)
+                td
+                  button.remove-item-button(title='Supprimer', identifier=item.productId)
+                    i.fa.fa-times(identifier=item.productId)
+                td
+                  a(href='./products.html/' + item.productId) #{item.name}
+                td
+                  .row
+                    .col
+                      if item.quantity == 1
+                        button.remove-quantity-button(title='Retirer', disabled='true')
+                          i.fa.fa-minus
+                      else
+                        button.remove-quantity-button(title='Retirer')
+                          i.fa.fa-minus
+                    .col.quantity #{item.quantity}
+                    .col
+                      button.add-quantity-button(title='Ajouter')
+                        i.fa.fa-plus
+                td.price #{(item.quantity * item.price).toFixed(2).toString().replace('.', ',')}&thinsp;$
+        p.shopping-cart-total Total: 
+          strong#total-amount #{cart.total.toFixed(2).toString().replace('.', ',')}&thinsp;$
+        a.btn.pull-right(href='./order.html') Commander
+          i.fa.fa-angle-double-right
+        button#remove-all-items-button.btn &nbsp; Vider le panier
+          i.fa.fa-trash-o
+    else
+      p Aucun produit dans le panier

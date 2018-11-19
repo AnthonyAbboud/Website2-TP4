@@ -9,9 +9,9 @@ const emptyShoppingCart = require("../lib/ShoppingCart/emptyShoppingCart");
 
 router.get("/api/shopping-cart", getShoppingCart);
 router.get("/api/shopping-cart/:productId", getShoppingCartItem);
-router.post("/api/shopping-cart", addShoppingCartItem);
+router.post("/api/shopping-cart/", addShoppingCartItem);
 router.put("/api/shopping-cart/:productId", addShoppingCartItem);
 router.delete("/api/shopping-cart/:productId", deleteShoppingCartItem);
-router.delete("/api/shopping-cart", emptyShoppingCart);
+router.delete("/api/shopping-cart/", emptyShoppingCart);
 
 module.exports = router;
