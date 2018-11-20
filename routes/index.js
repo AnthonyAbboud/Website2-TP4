@@ -13,37 +13,40 @@ const updateCartNumber = (req) => {
 	}
 	return res;
 }
-console.log();
+
 router.get("/", (req, res) => {
   res.render("index", { title: "Accueil", cart: {count: updateCartNumber(req)}});
 });
 
-router.get("/index", (req, res) => {
+router.get("/index.html", (req, res) => {
   res.render("index", { title: "Accueil", cart: {count: updateCartNumber(req)}});
 });
 
 router.get("/products.html", (req, res) => {
+  let category = req.query.category;
+  let criteria = req.query.criteria;
+  let productsList = getProducts(category, criteria);
   res.render("products", { title: "Produits", products: getProducts, cart: {count: updateCartNumber(req)}});
 });
 
-router.get("/products/:id", (req, res) => {
-  res.render("products", { title: "Produit", product: getProduct, cart: {count: updateCartNumber(req)} });
+router.get("/products.html/:id", (req, res) => {
+  res.render("product", { title: "Produit", product: getProduct, cart: {count: updateCartNumber(req)}});
 });
 
-router.get("/contact", (req, res) => {
-  res.render("contact", { title: "Contact", message: "Ça semble fonctionner!" });
+router.get("/contact.html", (req, res) => {
+  res.render("contact", { title: "Contact", cart: {count: updateCartNumber(req)}});
 });
 
-router.get("/shopping-cart", (req, res) => {
-  res.render("shopping-cart", { title: "Panier", message: "Ça semble fonctionner!" });
+router.get("/shopping-cart.html", (req, res) => {
+  res.render("shopping-cart", { title: "Panier", cart: {count: updateCartNumber(req)}});
 });
 
-router.get("/order", (req, res) => {
-  res.render("order", { title: "Commande", message: "Ça semble fonctionner!" });
+router.get("/order.html", (req, res) => {
+  res.render("order", { title: "Commande", cart: {count: updateCartNumber(req)}});
 });
 
-router.get("/confirmation", (req, res) => {
-  res.render("confirmation", { title: "Confirmation", message: "Ça semble fonctionner!" });
+router.get("/confirmation.html", (req, res) => {
+  res.render("confirmation", { title: "Confirmation", cart: {count: updateCartNumber(req)}});
 });
 
 module.exports = router;

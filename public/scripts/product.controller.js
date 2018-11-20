@@ -19,7 +19,7 @@ var onlineShop = onlineShop || {};
     $("#product-price").html(utils.formatPrice(product.price));
     $("#product-image").attr("src", "./assets/img/" + product.image);
     $("#product-features").append(product["features"].map(feature => $("<li>" + feature + "</li>")));
-    $("#add-to-cart-form").attr("data-product-id", product-id);
+    $("#add-to-cart-form").attr("data-product-id", product.id);
   }
   
   const productId = +utils.getUrlParameter("id");

@@ -2,34 +2,34 @@ extends layout
 
 block content
   main
-  article
-    if product
-      h1#product-name #{product.name}
-      .row
-        .col
-          img#product-image(alt='product', src='./assets/img/' + product.image)
-        .col
-          section
-            h2 Description
-            p#product-desc !{product.description}
-          section
-            h2 Caractéristiques
-            ul#product-features
-              each characteristic in product.features
-                li !{characteristic}
-          hr
-          form#add-to-cart-form.pull-right(data-product-id=product.id)
-            label(for='product-quantity') Quantité:
-            input#product-quantity.form-control(type='number', value='1', min='1')
-            button.btn(title='Ajouter au panier', type='submit')
-              i.fa.fa-cart-plus
-              span &nbsp; Ajouter
-          p Prix: 
-            strong#product-price #{product.price.toString().replace('.', ',')}
-      #dialog.dialog
-        span Le produit a été ajouté au panier.
-    else
-      h1#product-name Page non trouvée!
+    article
+      if product
+        h1#product-name #{product.name}
+        .row
+          .col
+            img#product-image(alt='product', src='./assets/img/' + product.image)
+          .col
+            section
+              h2 Description
+              p#product-desc !{product.description}
+            section
+              h2 Caractéristiques
+              ul#product-features
+                each characteristic in product.features
+                  li !{characteristic}
+            hr
+            form#add-to-cart-form.pull-right(data-product-id=product.id)
+              label(for='product-quantity') Quantité:
+              input#product-quantity.form-control(type='number', value='1', min='1')
+              button.btn(title='Ajouter au panier', type='submit')
+                i.fa.fa-cart-plus
+                span &nbsp; Ajouter
+            p Prix: 
+              strong#product-price #{product.price.toString().replace('.', ',')}
+        #dialog.dialog
+          span Le produit a été ajouté au panier.
+      else
+        h1#product-name Page non trouvée!
       
 block scripts
   script(type='text/javascript', src='./assets/scripts/product.controller.js')
